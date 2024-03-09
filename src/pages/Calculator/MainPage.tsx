@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Button, MainBox, PickButton, ScreenBox, SubmitButton, Warning} from "../components";
+import {Button, MainBox, PickButton, ScreenBox, SubmitButton, Warning} from "../../components/Calculator";
 import { BsTrash3 } from "react-icons/bs";
 
 
