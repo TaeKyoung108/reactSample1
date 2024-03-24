@@ -73,7 +73,7 @@ function IndexSelect({$grid, currentIndex, maxIndex, onClick} : IndexWithCss){
 
     return(
         <IndexSelectProps $grid={$grid}>
-            {firstPageIndex > 1 && <IndexButtonProps onClick={()=> {
+            {(firstPageIndex > 1) &&(firstPageIndex+intervalValue>1) && <IndexButtonProps onClick={()=> {
 
                 setIntervalValue(intervalValue - 1)
             }}><IoIosArrowBack /></IndexButtonProps>}
