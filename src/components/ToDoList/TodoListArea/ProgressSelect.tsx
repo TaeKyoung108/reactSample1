@@ -1,26 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {ClickButton} from "../../Commons/CommonButton";
 
+interface ProgressSelectProps{
+    progressList : string[];
+    selected : string;
+    progressChange : (str : string) => void;
+}
 
-function ProgressSelect(){
+function ProgressSelect({progressList, progressChange, selected} : ProgressSelectProps){
 
-    let [progressList, setProgressList] = useState(["전체","진행중","완료"])
-    const savedSelectedButton = localStorage.getItem('selectedButton');
-    const [selected, setSelected] = useState(savedSelectedButton || "전체");
-    function sample(){
-
-    }
-
-    // 컴포넌트가 마운트될 때 로컬 스토리지에서 선택된 버튼 상태를 가져오기
-    useEffect(() => {
-        const savedSelectedButton = localStorage.getItem('selectedButton');
-        if (savedSelectedButton) {
-            setSelected(savedSelectedButton);
-        }
-    }, []);
 
     const handleButtonClick = (buttonName : string) => {
-        setSelected(buttonName);
+        progressChange(buttonName);
         localStorage.setItem('selectedButton', buttonName);
     };
 

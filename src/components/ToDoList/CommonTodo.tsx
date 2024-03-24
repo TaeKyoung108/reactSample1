@@ -1,4 +1,5 @@
 export interface TodoItem{
+    id : number;
     value : string;
     color : string;
     isDone : boolean;

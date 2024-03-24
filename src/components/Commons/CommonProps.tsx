@@ -20,6 +20,9 @@ export interface cssGridProps extends gridProps{
     $padding? : string;
     $margin? : string;
     $width? : string;
+    $marginLeft? : string;
+    $marginRight? : string;
+    $marginTop? :string;
 }
 
 export interface commonStringProps extends gridProps, Props<string> {

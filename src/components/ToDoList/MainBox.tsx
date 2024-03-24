@@ -8,8 +8,8 @@ interface MainBoxProps {
 
 const StyledMainBox = styled.div`
   border: 1px solid #cccccc;
-  height: auto;
-  width: 300px;
+  height: 750px;
+  width: 450px;
   border-radius: 20px;
   background-color: #1B1F2B;
   display: grid;
@@ -19,11 +19,10 @@ const StyledMainBox = styled.div`
     "HD HD HD"
     "a a a"
     "b1 b2 b3"
-    "c c c"
-    "c c c"
-    "c c c";
-  grid-template-columns: 100px 100px 100px;
-  grid-template-rows: 40px 100px 60px 80px 80px 80px 80px;
+    "c1 c1 c1"
+    "c2 c2 c2";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 4fr 6fr 5fr 3fr 30fr;
 `;
 
 
