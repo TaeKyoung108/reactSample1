@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import {cssGridProps} from "../../Commons/CommonProps";
+import React, {useState} from "react";
+import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 
 
 interface IndexWithCss extends cssGridProps{
@@ -53,35 +55,49 @@ const IndexButtonProps = styled.button<cssGridProps>`
     }
   
     &:active {
-      //border: 1.5px solid #000000;
+      background-color: #7C7E93;
     }
   `;
 
 
 
+
+
 function IndexSelect({$grid, currentIndex, maxIndex, onClick} : IndexWithCss){
     const pageCount = Math.min(maxIndex,5); //페이지 숫자 전체 페이지가 5개보다 적으면 그 숫자만큼, 많으면 일단 5개까지
-    const firstPageIndex = Math.max(1, currentIndex - 2); // 첫 번째 페이지 버튼의 인덱스
-    const lastPageIndex = Math.min(maxIndex, firstPageIndex + pageCount - 1); // 마지막 페이지 버튼의 인덱스
+    const firstPageIndex = Math.max(1, Math.min(currentIndex-2, maxIndex-4)); // 첫 번째 페이지 버튼의 인덱스
+    const lastPageIndex = Math.min(maxIndex, firstPageIndex + 4); // 마지막 페이지 버튼의 인덱스
 
+    const [intervalValue,setIntervalValue] = useState<number>(0);
 
 
     return(
         <IndexSelectProps $grid={$grid}>
+            {firstPageIndex > 1 && <IndexButtonProps onClick={()=> {
+
+                setIntervalValue(intervalValue - 1)
+            }}><IoIosArrowBack /></IndexButtonProps>}
             {
-                Array.from({length : pageCount}, (_,index) => {
-                    const pageNumber = firstPageIndex + index; // 페이지 버튼에 표시할 숫자
+                Array.from({length: pageCount}, (_, index) => {
+                    const pageNumber = firstPageIndex + index + intervalValue; // 페이지 버튼에 표시할 숫자
                     return (
                         <IndexButtonProps
-                            key={"page"+pageNumber}
+                            key={"page" + pageNumber}
                             $isSelected={currentIndex === pageNumber}
-                            onClick={() => onClick(pageNumber)}
+                            onClick={() => {
+                                setIntervalValue(0);
+                                onClick(pageNumber)
+                            }}
                         >
                             {pageNumber}
                         </IndexButtonProps>
                     );
                 })
             }
+            {lastPageIndex+intervalValue < maxIndex && <IndexButtonProps onClick={()=> {
+
+                setIntervalValue(intervalValue + 1)
+            }}><IoIosArrowForward /></IndexButtonProps>}
         </IndexSelectProps>
     )
 }
