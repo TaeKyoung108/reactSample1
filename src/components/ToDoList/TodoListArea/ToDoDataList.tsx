@@ -1,12 +1,13 @@
 import {TodoItem} from "../CommonTodo";
 import styled from "styled-components";
 import {cssGridProps} from "../../Commons/CommonProps";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FaCheckSquare, FaTimesCircle} from "react-icons/fa";
 import ColorButton from "./ColorButton";
 
 interface ToDoDataListPropsWithCss extends cssGridProps{
     TodoList: TodoItem[];
+    currentIndex? :number;
     updateColorById : (targetId: number, newColor: string) =>void;
     progressChange : (targetId: number) =>void;
     todoDelete : (targetId: number) =>void;
@@ -89,8 +90,10 @@ const TodoListSubDataProps = styled.div<cssGridProps>`
   align-items: center;
   justify-content: flex-start;
   margin-left: ${(props)=>props.$marginLeft ? props.$marginLeft : 0};
-  
+  margin-right: ${(props)=>props.$marginRight ? props.$marginRight : 0};
+  justify-content: space-between;
   user-select: none;
+  font-size: 12px;
 `;
 
 
@@ -136,6 +139,9 @@ function ToDoDataList(props :ToDoDataListPropsWithCss){
     const [selectedTodo, setSelectedTodo] = useState<number>(0);
     let [temp, setTemp] = useState<string>("#000000");
 
+    //페이지 전환시 선택값 사라짐
+    useEffect(()=>{setSelectedTodo(0)},[props.currentIndex])
+
     return(
         <TodoListBoxProps $grid={props.$grid}>
             {[...props.TodoList].map((data) => (
@@ -157,8 +163,27 @@ function ToDoDataList(props :ToDoDataListPropsWithCss){
                             }/>
                         </ListButtonClickArea>
                     </TodoListMainDataProps>
-                    {data.id == selectedTodo ?<TodoListSubDataProps $marginLeft={"20px"}>
-                        {new Date(data.creationDate).toLocaleDateString("ko-KR")}
+                    {data.id == selectedTodo ?<TodoListSubDataProps $marginLeft={"20px"} >
+                        <div>{"생성일 : "+new Date(data.creationDate).toLocaleString("ko-KR",
+                            {
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                hour12: false
+                            })}</div>
+                        {data.EndDate && (
+                            <div>{"완료일 : " + new Date(data.EndDate).toLocaleString("ko-KR",
+                                {
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                hour12: false
+                            })}</div>
+                        )}
                     </TodoListSubDataProps> : null}
                 </TodoListDataProps>
             ))}

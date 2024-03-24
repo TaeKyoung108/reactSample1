@@ -125,7 +125,12 @@ function TodoListArea(){
     function progressChange(targetId :number){
         let updatedList = TodoList.map((todo)=>{
             if (todo.id === targetId){
-                return{...todo,isDone :!todo.isDone};
+                if (todo.isDone){
+                    return{...todo,isDone :!todo.isDone, EndDate :null};
+                }
+                else {
+                    return{...todo,isDone :!todo.isDone, EndDate : new Date()};
+                }
             }
             return todo;
         })
@@ -150,7 +155,7 @@ function TodoListArea(){
             />
             <ProgressSelect progressList={progressList} selected={selected} progressChange={(str)=>handleButtonClick(str)}/>
             <IndexSelect $grid={"c1"} currentIndex={currentIndex} maxIndex={maxIndex} onClick={(number)=>currentIndexChange(number)}/>
-            <ToDoDataList $grid={"c2"} TodoList={getFilteredTodoList().slice(Math.max(0,(currentIndex-1)*5), Math.max(0,(currentIndex*5)))} updateColorById={updateColorById} progressChange={progressChange} todoDelete={todoDelete}/>
+            <ToDoDataList $grid={"c2"} TodoList={getFilteredTodoList().slice(Math.max(0,(currentIndex-1)*5), Math.max(0,(currentIndex*5)))} updateColorById={updateColorById} progressChange={progressChange} todoDelete={todoDelete} currentIndex={currentIndex}/>
 
         </>
     )

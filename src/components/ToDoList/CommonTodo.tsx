@@ -4,5 +4,5 @@ export interface TodoItem{
     color : string;
     isDone : boolean;
     creationDate : Date;
-    EndDate? : Date;
+    EndDate? : Date | null;
 }

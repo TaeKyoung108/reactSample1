@@ -1,5 +1,14 @@
 .App {
+  font-family: sans-serif;
   text-align: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
+  min-height: 700px;
+  width: 100%;
+  min-width: 700px;
+  background-color: #000000;
 }
 
 .App-logo {
