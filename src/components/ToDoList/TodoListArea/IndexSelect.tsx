@@ -60,13 +60,27 @@ const IndexButtonProps = styled.button<cssGridProps>`
 
 
 function IndexSelect({$grid, currentIndex, maxIndex, onClick} : IndexWithCss){
+    const pageCount = Math.min(maxIndex,5); //페이지 숫자 전체 페이지가 5개보다 적으면 그 숫자만큼, 많으면 일단 5개까지
+    const firstPageIndex = Math.max(1, currentIndex - 2); // 첫 번째 페이지 버튼의 인덱스
+    const lastPageIndex = Math.min(maxIndex, firstPageIndex + pageCount - 1); // 마지막 페이지 버튼의 인덱스
+
+
 
     return(
         <IndexSelectProps $grid={$grid}>
             {
-                Array.from({length : Math.min(maxIndex, 5)}, (_,index) =>(
-                    <IndexButtonProps key={index} $isSelected={currentIndex===(index+1)} onClick={()=>onClick(index+1)}>{index+1}</IndexButtonProps>
-                ))
+                Array.from({length : pageCount}, (_,index) => {
+                    const pageNumber = firstPageIndex + index; // 페이지 버튼에 표시할 숫자
+                    return (
+                        <IndexButtonProps
+                            key={"page"+pageNumber}
+                            $isSelected={currentIndex === pageNumber}
+                            onClick={() => onClick(pageNumber)}
+                        >
+                            {pageNumber}
+                        </IndexButtonProps>
+                    );
+                })
             }
         </IndexSelectProps>
     )

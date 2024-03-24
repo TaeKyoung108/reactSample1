@@ -58,21 +58,21 @@ function TodoListArea(){
         }
     }
 
-    function sampleTodo(){
-        SetTodoList((prevTodos) => [...prevTodos, { id : 1, value: 'New Todo1', color: '#f29b76', isDone: true, creationDate: new Date()}]);
-        SetTodoList((prevTodos) => [...prevTodos, { id : 2,  value: 'New Todo2', color: '#facd89', isDone: false, creationDate: new Date()}]);
-        SetTodoList((prevTodos) => [...prevTodos, { id : 3,  value: 'New Todo3', color: '#cce198', isDone: false, creationDate: new Date()}]);
-        SetTodoList((prevTodos) => [...prevTodos, { id : 4,  value: 'New Todo4', color: '#89c997', isDone: true, creationDate: new Date()}]);
-        SetTodoList((prevTodos) => [...prevTodos, { id : 5,  value: 'New Todo5', color: '#7ecef4', isDone: false, creationDate: new Date()}]);
-        SetTodoList((prevTodos) => [...prevTodos, { id : 6,  value: 'New Todo6', color: '#8f82bc', isDone: false, creationDate: new Date()}]);
-        SetTodoList((prevTodos) => [...prevTodos, { id : 7,  value: 'New Todo7', color: '#c490bf', isDone: true, creationDate: new Date()}]);
-        SetTodoList((prevTodos) => [...prevTodos, { id : 8,  value: 'New Todo8', color: '#f29c9f', isDone: false, creationDate: new Date()}]);
-        SetTodoList((prevTodos) => [...prevTodos, { id : 9,  value: 'New Todo9', color: '#f29b76', isDone: false, creationDate: new Date()}]);
-        setIdIndex(10);
-    }
-    useEffect(() => {
-        sampleTodo();
-    }, []);
+    // function sampleTodo(){
+    //     SetTodoList((prevTodos) => [...prevTodos, { id : 1, value: 'New Todo1', color: '#f29b76', isDone: true, creationDate: new Date()}]);
+    //     SetTodoList((prevTodos) => [...prevTodos, { id : 2,  value: 'New Todo2', color: '#facd89', isDone: false, creationDate: new Date()}]);
+    //     SetTodoList((prevTodos) => [...prevTodos, { id : 3,  value: 'New Todo3', color: '#cce198', isDone: false, creationDate: new Date()}]);
+    //     SetTodoList((prevTodos) => [...prevTodos, { id : 4,  value: 'New Todo4', color: '#89c997', isDone: true, creationDate: new Date()}]);
+    //     SetTodoList((prevTodos) => [...prevTodos, { id : 5,  value: 'New Todo5', color: '#7ecef4', isDone: false, creationDate: new Date()}]);
+    //     SetTodoList((prevTodos) => [...prevTodos, { id : 6,  value: 'New Todo6', color: '#8f82bc', isDone: false, creationDate: new Date()}]);
+    //     SetTodoList((prevTodos) => [...prevTodos, { id : 7,  value: 'New Todo7', color: '#c490bf', isDone: true, creationDate: new Date()}]);
+    //     SetTodoList((prevTodos) => [...prevTodos, { id : 8,  value: 'New Todo8', color: '#f29c9f', isDone: false, creationDate: new Date()}]);
+    //     SetTodoList((prevTodos) => [...prevTodos, { id : 9,  value: 'New Todo9', color: '#f29b76', isDone: false, creationDate: new Date()}]);
+    //     setIdIndex(10);
+    // }
+    // useEffect(() => {
+    //     sampleTodo();
+    // }, []);
 
     function updateColorById(targetId : number, newColor :string){
         let updatedList = TodoList.map((todo)=>{

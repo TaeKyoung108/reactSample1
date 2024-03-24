@@ -140,7 +140,7 @@ function ToDoDataList(props :ToDoDataListPropsWithCss){
         <TodoListBoxProps $grid={props.$grid}>
             {[...props.TodoList].map((data) => (
 
-                <TodoListDataProps key={data.value} $isSelected={data.id === selectedTodo}>
+                <TodoListDataProps key={"data "+data.id} $isSelected={data.id === selectedTodo}>
                     {data.id == selectedTodo ?
                         <ColorButton color={data.color} $marginTop={"0"} $marginLeft={"30px"} updateColor={((newColor) => props.updateColorById(data.id,newColor))}></ColorButton>
                         : null}
