@@ -29,7 +29,7 @@ const IndexButtonProps = styled.button<cssGridProps>`
     //border: none;
     border: ${(props)=>props.$isSelected ? "1px solid #000000" : "none"};
     cursor: pointer;
-    background-color: ${(props)=>props.$backgroundColor ?? "#56657C"};
+    background-color: ${(props)=>props.$isSelected? "#7C7E93" : props.$backgroundColor ?? "#56657C"};
     color: ${(props)=>props.$color ?? "#ffffff"};
     outline: none;
     padding: ${(props) => (props.$padding ? props.$padding : 0)};
