@@ -111,11 +111,11 @@ const TodoListColorProps = styled.div<cssGridProps>`
   margin-top : 0;
 `;
 
-function listClickHandle(str: string, selectedTodo: string, setSelectedTodo: React.Dispatch<React.SetStateAction<string>>) {
-    if (selectedTodo === str) {
-        setSelectedTodo("");
+function listClickHandle(id: number, selectedTodo: number, setSelectedTodo: React.Dispatch<React.SetStateAction<number>>) {
+    if (id === selectedTodo) {
+        setSelectedTodo(0);
     } else {
-        setSelectedTodo(str);
+        setSelectedTodo(id);
     }
 }
 const ListButtonClickArea = styled.div<cssGridProps>`
@@ -133,18 +133,18 @@ const ListButtonClickArea = styled.div<cssGridProps>`
 function ToDoDataList(props :ToDoDataListPropsWithCss){
 
 
-    const [selectedTodo, setSelectedTodo] = useState<string>("");
+    const [selectedTodo, setSelectedTodo] = useState<number>(0);
     let [temp, setTemp] = useState<string>("#000000");
 
     return(
         <TodoListBoxProps $grid={props.$grid}>
             {[...props.TodoList].map((data) => (
 
-                <TodoListDataProps key={data.value} $isSelected={data.value === selectedTodo}>
-                    {data.value == selectedTodo ?
+                <TodoListDataProps key={data.value} $isSelected={data.id === selectedTodo}>
+                    {data.id == selectedTodo ?
                         <ColorButton color={data.color} $marginTop={"0"} $marginLeft={"30px"} updateColor={((newColor) => props.updateColorById(data.id,newColor))}></ColorButton>
                         : null}
-                    <TodoListMainDataProps  onClick={()=>{listClickHandle(data.value, selectedTodo, setSelectedTodo)}} $isSelected={data.value === selectedTodo}>
+                    <TodoListMainDataProps  onClick={()=>{listClickHandle(data.id, selectedTodo, setSelectedTodo)}} $isSelected={data.id === selectedTodo}>
                         <TodoListColorProps $backgroundColor={data.color}></TodoListColorProps>{data.value}
                         <ListButtonClickArea>
                             <FaCheckSquare color={ data.isDone ? "#FFECDB" :"#56657C"} fontSize={"18px"} onClick={(event)=>{
@@ -157,7 +157,7 @@ function ToDoDataList(props :ToDoDataListPropsWithCss){
                             }/>
                         </ListButtonClickArea>
                     </TodoListMainDataProps>
-                    {data.value == selectedTodo ?<TodoListSubDataProps $marginLeft={"20px"}>
+                    {data.id == selectedTodo ?<TodoListSubDataProps $marginLeft={"20px"}>
                         {new Date(data.creationDate).toLocaleDateString("ko-KR")}
                     </TodoListSubDataProps> : null}
                 </TodoListDataProps>
