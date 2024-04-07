@@ -5,10 +5,10 @@
   align-items: flex-start;
   justify-content: center;
   height: 100vh;
-  min-height: 700px;
+  min-height: 1000px;
   width: 100%;
   min-width: 700px;
-  background-color: #000000;
+  background-color: #E5E9EC;
 }
 
 .App-logo {

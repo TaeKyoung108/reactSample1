@@ -88,7 +88,6 @@ const TodoListSubDataProps = styled.div<cssGridProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
   margin-left: ${(props)=>props.$marginLeft ? props.$marginLeft : 0};
   margin-right: ${(props)=>props.$marginRight ? props.$marginRight : 0};
   justify-content: space-between;
@@ -137,7 +136,6 @@ function ToDoDataList(props :ToDoDataListPropsWithCss){
 
 
     const [selectedTodo, setSelectedTodo] = useState<number>(0);
-    let [temp, setTemp] = useState<string>("#000000");
 
     //페이지 전환시 선택값 사라짐
     useEffect(()=>{setSelectedTodo(0)},[props.currentIndex])
