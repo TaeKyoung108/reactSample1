@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {newCssGridProps} from "../StyledComponent/newCommonProps";
 import colorSheet from "../../../../CommonData/design/colors.json";
 import {useState} from "react";
-import {getRandomNumber} from "../CustomHook/RandomNumber";
 
 interface CreateNumberProps {
     $lightMode : boolean;
@@ -25,7 +24,6 @@ const CreateNumberArea = ({$lightMode}:CreateNumberProps) => {
 
     // 랜덤인지 직접 입력인지
     const [randomCreate,setRandomCreate] = useState<boolean>(true);
-    console.log(getRandomNumber().getRandom(1,45));
 
     return(
         <CreateNumberWrapper $lightMode={$lightMode}>

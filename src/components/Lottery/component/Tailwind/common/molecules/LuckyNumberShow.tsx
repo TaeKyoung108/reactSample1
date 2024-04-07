@@ -16,7 +16,7 @@ interface LuckyNumberShowProps{
 const LuckyNumberShow = ({lightMode,numberList, valueNumber}:LuckyNumberShowProps) =>{
 
     return(
-        <div className={`ml-2 h-[48px] w-[48px] rounded-[48px] text-[20px] flex justify-center items-center leading-[36px] outline-none ${getColorClass(lightMode, numberList ? numberList[`value${valueNumber}` as keyof typeof numberList] : null)}`} key={"lucky_number" + valueNumber}>
+        <div className={`ml-2 h-[48px] w-[48px] rounded-[48px] text-[20px] flex justify-center items-center leading-[36px] outline-none ${lightMode? 'text-light_bg':'text-dark_bg'} ${getColorClass(lightMode, numberList ? numberList[`value${valueNumber}` as keyof typeof numberList] : null)}`} key={"lucky_number" + valueNumber}>
                 <span className={`leading-[36px] text-[20px] text-center`}>
                     {numberList ? numberList[`value${valueNumber}` as keyof typeof numberList] || '' : ''}
                 </span>

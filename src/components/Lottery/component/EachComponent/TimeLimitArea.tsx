@@ -12,7 +12,7 @@ export const TimeLimitAreaWrapper = styled.div<newCssGridProps>`
     height: 88px;
     background-color: ${(props)=>props.$lightMode?colorSheet.light_mode.bg_sub:colorSheet.dark_mode.grey};
     
-    margin: 0 0 4px 0;
+    margin: 0 0 0 0;
   
     display: flex;
     align-items: center;

@@ -5,7 +5,7 @@ import colorSheet from "../../../../CommonData/design/colors.json";
 
 const TotalPageWrapper = styled.div<newCssGridProps>`
     width: 580px;
-    height: 1000px;
+    height: 898px;
 
   
 `

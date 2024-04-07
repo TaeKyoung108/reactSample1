@@ -63,7 +63,7 @@ const CreateNumber = ({ lightMode, isManual,setIsManual, numberList, handleNumbe
 
 
     return (
-        <div className={`h-[8%] w-580 font-gmarketSans flex flex-row justify-center items-center select-none ${lightMode?'bg-light_bg':'bg-dark_bg'}`}>
+        <div className={`h-[9%] w-580 font-gmarketSans flex flex-row justify-center items-center select-none ${lightMode?'bg-light_bg':'bg-dark_bg'}`}>
             <div className={`h-[70%] w-[10px] flex flex-col justify-around items-center ${lightMode?'bg-light_bg':'bg-dark_bg'}`}>
                 <div className={`h-[40%] w-[5px] rounded ${isManual? lightMode?'bg-gradient_orange_1':'bg-gradient_green_1':'bg-light_text_sub'}`}></div>
                 <div className={`h-[40%] w-[5px] rounded ${!isManual?'bg-gradient_orange_1':'bg-light_text_sub'}`}></div>
