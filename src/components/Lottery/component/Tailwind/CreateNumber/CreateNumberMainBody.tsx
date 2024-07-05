@@ -18,18 +18,18 @@ interface BodyProps {
 }
 
 //아직 다크모드 색 구현 제대로 안됨
-const Body = ({lightMode, bodyList, handleListChangeClick, handleListResetClick, handleListChangeAllClick} : BodyProps) => {
+const CreateNumberMainBody = ({lightMode, bodyList, handleListChangeClick, handleListResetClick, handleListChangeAllClick} : BodyProps) => {
     return(
-        <div className={`mt-1 h-[65.6%] w-580 font-gmarketSans flex flex-col justify-center items-center select-none ${lightMode?'bg-light_bg':'bg-dark_bg'}`}>
-            <span className ={`mb-3 text-3xl ${lightMode ? 'text-light_text' : 'text-dark_text'}`}>1302회차</span>
+        <div className={`mt-[1px] h-[608px] w-[580px] font-gmarketSans flex flex-col justify-center items-center select-none ${lightMode?'bg-light_bg':'bg-dark_bg saturate-75'}`}>
+            <span className ={`mb-3 text-3xl ${lightMode ? 'text-light_text' : 'text-dark_text_sub'}`}>1302회차</span>
             {bodyList.map((list, index)=>(
-                <div className={`mt-2 h-[12%] w-[90%] font-gmarketSans flex flex-row justify-center items-center select-none border-solid border-2 rounded-[40px] ${lightMode?'bg-light_bg border-light_bg_sub':'bg-dark_bg border-dark_grey'}`}
+                <div className={`mt-2 h-[12%] w-[90%] font-gmarketSans flex flex-row justify-center items-center select-none border-solid border-2 rounded-[40px] ${lightMode?'bg-light_bg border-light_bg_sub':'bg-dark_bg_sub2 border-dark_bg_sub2'}`}
                     key={"list"+index}>
                     {/*<span className ={`w-[5%] text-3xl ${lightMode ? 'text-light_text' : 'text-dark_text'}`}>{index+1}</span>*/}
-                    <span className={`mt-2 w-[5%] text-3xl flex justify-center items-center text-center ${lightMode ? 'text-light_text' : 'text-dark_text'}`}>{index + 1}</span>
+                    <span className={`mt-2 w-[5%] text-3xl flex justify-center items-center text-center ${lightMode ? 'text-light_text' : 'text-dark_text_sub'}`}>{index + 1}</span>
                     <div className={`ml-10 h-[65%] w-[2px] ${lightMode ? 'bg-light_text_sub' : 'bg-dark_grey'}`}></div>
                     {Array.from({ length: 6 }, (_, index) => (
-                        <LuckyNumberShow numberList={list} lightMode={lightMode} valueNumber={index+1}></LuckyNumberShow>
+                        <LuckyNumberShow key={index+1} numberList={list} lightMode={lightMode} valueNumber={index+1}></LuckyNumberShow>
                     ))}
                     <button onClick={() => handleListChangeClick(index)}>
                         <FaShuffle className={`ml-2 ${lightMode ? 'text-light_text_sub' : 'text-dark_text'}`} size={25}/>
@@ -53,5 +53,5 @@ const Body = ({lightMode, bodyList, handleListChangeClick, handleListResetClick,
     )
 }
 
-export default Body;
+export default CreateNumberMainBody;
 

@@ -7,12 +7,13 @@ import {
     PiNumberCircleSeven,
     PiNumberCircleSevenFill, PiUserCircle, PiUserCircleFill
 } from "react-icons/pi";
+import {useSelector} from "react-redux";
+import {lightModeState} from "../../component/Redux/lightMode";
 
-interface FooterProps{
+
+
+interface CreateNumberProps{
     lightMode: boolean;
-}
-
-interface CreateNumberProps extends FooterProps{
     isSelected: boolean;
 }
 
@@ -49,10 +50,13 @@ const MyPage = ({lightMode, isSelected}: CreateNumberProps) => {
     )
 }
 
-const Footer = ({lightMode}:FooterProps) => {
+const Footer = () => {
+    const lightMode = useSelector((state : lightModeState)=> {
+        return state.lightMode;
+    })
     const location = useLocation();
     return (
-        <div className={`h-[10%] w-[580px] flex flex-row justify-around ${lightMode?'bg-light_bg':'bg-dark_bg'}`}>
+        <div className={` h-[100px] w-[580px] flex flex-row justify-around ${lightMode?'bg-light_bg':'bg-dark_bg'}`}>
             <CreateNumber lightMode={lightMode} isSelected={location.pathname === "/"}/>
             <SaveNumber lightMode={lightMode} isSelected={location.pathname === "/saveNumber"}/>
             <WinningReview lightMode={lightMode} isSelected={location.pathname === "/winningReview"}/>

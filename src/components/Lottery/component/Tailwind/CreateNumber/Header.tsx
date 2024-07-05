@@ -39,7 +39,7 @@ export const HeaderButton = ({ lightMode ,setDetailTabHeaderNumber,target, label
 };
 const Header = ({ lightMode, detailTabHeaderNumber, setDetailTabHeaderNumber}: HeaderProps) => {
     return (
-        <div className={`h-[14%] w-580 font-gmarketSans ${lightMode?'bg-gradient-to-r from-gradient_orange_1 to-gradient_orange_2':'bg-gradient-to-r from-gradient_green_1 to-gradient_green_2'}`}>
+        <div className={` h-[120px] w-[580px] font-gmarketSans ${lightMode?'bg-gradient-to-r from-gradient_orange_1 to-gradient_orange_2':'bg-gradient-to-r from-gradient_green_1 to-gradient_green_2'}`}>
             <div className="h-[50%] px w-[90%] flex items-center justify-left pl-10 font-bold text-lg">
                 LN
             </div>

@@ -1,23 +1,28 @@
 import TimeLimitArea from "../../component/EachComponent/TimeLimitArea";
 import Header from "../../component/Tailwind/CreateNumber/Header";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import CreateNumber from "../../component/Tailwind/CreateNumber/CreateNumber";
 import {useLuckyNumber} from "../../component/CustomHook/LuckyNumber";
-import Body from "../../component/Tailwind/CreateNumber/Body";
+import CreateNumberMainBody from "../../component/Tailwind/CreateNumber/CreateNumberMainBody";
 import {getRandomNumber} from "../../component/CustomHook/RandomNumber";
+import {useDispatch, useSelector} from "react-redux";
+import {changeLightMode, lightModeState} from "../../component/Redux/lightMode";
+import {StatusTab} from "../../component/Tailwind/CreateNumber/NumberStatus/StatusTab";
+import {StatusBody} from "../../component/Tailwind/CreateNumber/NumberStatus/StatusBody";
+import SearchTab from "../../component/Tailwind/CreateNumber/MainSearch/SearchTab";
 
-interface CreateNumberMainPageProps {
-    lightMode: boolean
-}
 
 /**
  * 로또 숫자 랜덤으로 생성하는 페이지
  * @constructor
  */
-const CreateNumberMainPage = ({lightMode}: CreateNumberMainPageProps) => {
+const CreateNumberMainPage = () => {
+    const lightMode = useSelector((state :lightModeState)=> {
+        return state.lightMode;
+    })
 
-    //isManual : 직접 입력하는지
-    let [isManual,setIsManual] = useState<boolean>(true);
+    //isManual : 직접 입력하는지 -> 기본은 랜덤
+    let [isManual,setIsManual] = useState<boolean>(false);
 
     const { numberList, handleNumber, onChange } = useLuckyNumber();
 
@@ -84,21 +89,45 @@ const CreateNumberMainPage = ({lightMode}: CreateNumberMainPageProps) => {
     // Header 통해서 볼 수 있는 탭 1->번호생성(default) 2->회차검색 3->번호통계
     const [detailTabHeaderNumber,setDetailTabHeaderNumber] = useState<number>(1);
 
+    // 번호통계에서 볼 수 있는 탭 1-> 번호별 당첨 통계 2-> 구간별 당첨 통계
+    const [numberStatus,setNumberStatus] = useState<number>(1);
+    const changeNumberStatus = (num : number) => {
+        if (num == 1){
+            setNumberStatus(1)
+        }
+        else if (num == 2){
+            setNumberStatus(2)
+        }else {
+            return;
+        }
+    }
 
     return(
-        <div className={`h-[85%] w-[580px]`}>
+        <div className={`h-[900px] w-[580px]`}>
 
             <Header lightMode={lightMode} detailTabHeaderNumber={detailTabHeaderNumber} setDetailTabHeaderNumber={setDetailTabHeaderNumber}></Header>
-
-            {/*시간 출력 부분 styled-component*/}
             <TimeLimitArea $lightMode={lightMode}></TimeLimitArea>
-            {/*그전에 해놨던 임시 블럭*/}
-            {/*<CreateNumberWrapper $lightMode={lightMode}>*/}
-            {/*    <LuckyNumberProps lightMode={lightMode}></LuckyNumberProps>*/}
-            {/*</CreateNumberWrapper>*/}
             <CreateNumber lightMode={lightMode} isManual={isManual} setIsManual={setIsManual} numberList={numberList} handleNumber={handleNumber} onChange={onChange}></CreateNumber>
 
-            <Body lightMode={lightMode} bodyList={bodyList} handleListChangeClick={handleListChangeClick} handleListResetClick={handleListResetClick} handleListChangeAllClick={handleListChangeAllClick}></Body>
+            {detailTabHeaderNumber === 1 && (
+                <>
+                    {/*시간 출력 부분 styled-component*/}
+                    <CreateNumberMainBody lightMode={lightMode} bodyList={bodyList} handleListChangeClick={handleListChangeClick} handleListResetClick={handleListResetClick} handleListChangeAllClick={handleListChangeAllClick}></CreateNumberMainBody>
+                </>
+            )}
+            {detailTabHeaderNumber ===2 &&(
+                <>
+                    <SearchTab></SearchTab>
+                </>
+            )}
+            {detailTabHeaderNumber === 3 && (
+                <>
+                    <StatusTab numberStatus={numberStatus} changeNumberStatus={changeNumberStatus}></StatusTab>
+                    <StatusBody numberStatus={numberStatus}></StatusBody>
+                </>
+            )}
+
+
         </div>
     )
 }

@@ -25,7 +25,7 @@ const LuckyNumberInput = ({lightMode,numberList,handleNumber,onChange, isManual,
     return(<input className={`ml-2 h-[48px] w-[48px] rounded-[48px] text-[20px] text-center align-middle leading-[36px] outline-none ${lightMode? 'text-light_bg':'text-dark_bg'} ${getColorClass( lightMode,numberList ? numberList[`value${valueNumber}` as keyof typeof numberList] : null)}`}
                   key={valueNumber}
                   value={numberList ? numberList[`value${valueNumber}` as keyof typeof numberList] || '' : ''}
-                  onChange={onChange(valueNumber)}
+                  onChange={onChange&&onChange(valueNumber)}
                   readOnly={!isManual}
                   onClick={()=>setRandomNumberOnClick(valueNumber)}
     />)

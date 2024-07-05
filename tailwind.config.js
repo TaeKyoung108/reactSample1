@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'selector',
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -30,8 +31,10 @@ module.exports = {
         'light_white': '#F4F5F7',
         'light_black': '#4C4C4C',
         // dark_mode
-        'dark_bg': '#39393B',
+        'dark_bg': '#121212',
         'dark_bg_sub': '#CCCCCC',
+        'dark_bg_sub2': '#1C1C1C',
+        'dark_button' : '#333333',
         'dark_text': '#FFFFFF',
         'dark_text_sub': '#FBFBFD',
         'dark_light_green': '#7AC674',
@@ -48,6 +51,6 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 }
 
